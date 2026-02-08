@@ -19,11 +19,7 @@ pub struct WhitelistCreator<'info> {
     pub system_program: Program<'info, System>,
     #[account(constraint = this_program.programdata_address()? == Some(program_data.key()))]
     pub this_program: Program<'info, AnchorMplxcoreQ425>,
-    // TODO: Restore upgrade authority check for mainnet deployment
-    // For local testing, anchor deploys programs without upgrade authority (None)
-    // which causes the original constraint to always fail.
-    // Original constraint:
-    // constraint = program_data.upgrade_authority_address == Some(payer.key()) @ MPLXCoreError::NotAuthorized
+    
     pub program_data: Account<'info, ProgramData>,
 }
 
